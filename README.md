@@ -1,7 +1,7 @@
 # IGA-Bspline-Cahn-Haliard
 Isogeometric Analysis for the numerical approximation of the Cahn-Halliard equation
 
-### Comming soon
+### coming soon
 
 ## Please install pyccel and start enjoying your research with a simple implementation using simplines
 
