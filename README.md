@@ -1,5 +1,5 @@
 # IGA-Bspline-Cahn-Haliard
-Isogeometric analysis for numerical approximation of the Cahn-Halliard equation using the implicit method and the generalized alpha method.
+Isogeometric analysis for numerical approximation of the Cahn-Halliard equation using the implicit scheme and the generalized alpha method.
 
 ### coming soon
 
