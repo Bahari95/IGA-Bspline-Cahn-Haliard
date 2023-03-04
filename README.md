@@ -15,5 +15,5 @@ Isogeometric Analysis for the numerical approximation of the Cahn-Halliard equat
 
   https://github.com/Bahari95/simplines
 
-## See
+## For Cahn-Haliard, See
   https://doi.org/10.1016/j.cma.2008.05.003
