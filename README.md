@@ -17,3 +17,6 @@ Isogeometric analysis for numerical approximation of the Cahn-Halliard equation 
 
 ## For Cahn-Haliard, See
   https://doi.org/10.1016/j.cma.2008.05.003
+### alpha = 3000
+![GIF](https://github.com/Bahari95/IGA-Bspline-Cahn-Haliard/blob/main/implicit_scheme/cahn_haliard.gif)
+### alpha = 9000
