@@ -19,3 +19,5 @@ Isogeometric analysis for numerical approximation of the Cahn-Halliard equation 
   https://doi.org/10.1016/j.cma.2008.05.003
 ### alpha = 3000 using degree $= 3$ and number of cells $= 32$ [implicit scheme]
 ![GIF](https://github.com/Bahari95/IGA-Bspline-Cahn-Haliard/blob/main/implicit_scheme/cahn_haliard.gif)
+
+### alpha = 6000 using degree $= 2$ and number of cells $= 64$ [Generalized-Alpha method]
