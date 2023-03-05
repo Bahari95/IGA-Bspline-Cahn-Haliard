@@ -1,7 +1,7 @@
 # IGA-Bspline-Cahn-Haliard
 Isogeometric analysis for numerical approximation of the Cahn-Halliard equation using the implicit scheme and the generalized alpha method.
 
-### coming soon
+
 
 ## Please install pyccel and start enjoying your research with a simple implementation using simplines
 
