@@ -21,7 +21,7 @@ from gallery_section_08 import assemble_vector_ex01 #---1 : Projection L2
 assemble_rhs         = compile_kernel(assemble_vector_ex01, arity=1)
 assemble_mass1D      = compile_kernel( assemble_massmatrix1D, arity=2)
 
-# ---.
+# ---. for cahn-haliard
 from gallery_section_08 import assemble_matrix_ex03 
 from gallery_section_08 import assemble_vector_ex03
 from gallery_section_08 import assemble_norm_ex01 
@@ -56,22 +56,13 @@ def Proj_solve(V1, V2 , V, alpha):
        M2                = csr_matrix(M2)
        
        M_res             = kron(M1,M2)
-       #mats_1           = [0.5*M1, 0.5*M1]
-       #mats_2           = [M2, M2]
-
-       # ...
-       #poisson          = Poisson(mats_1, mats_2)
- 
-       #---- assemble random control Points
-       #rhs              = assemble_rhs( V)
-       #b                = apply_periodic(V, rhs, periodic)
-       #xh               = poisson.solve(b)
-       #xh               = xh.reshape((V1.nbasis-V1.degree, V2.nbasis-V2.degree))
+       # ... assemble random control Points
        xh                = (np.random.rand(V1.nbasis-V1.degree,V2.nbasis-V2.degree)-1.)*0.05 +0.63
        xh                = apply_periodic(V, xh, periodic, update = True)
        u.from_array(V, xh)
-       Norm              = assemble_norm_l2(V, fields=[u], value = [alpha])
-       norm              = Norm.toarray()[0]
+       # ... GL-FREE-ENERGY
+       Norm             = assemble_norm_l2(V, fields=[u], value = [alpha])
+       norm             = Norm.toarray()[0]
        return u, xh,  M_res, norm
 
 #============================================================
@@ -120,8 +111,9 @@ def Cahn_Hliard_solve(V1, V2, V, u, xh, dt, alpha, N_iter = None):
              break
        u.from_array(V, xu_n)
        print('perform the iteration number : = {} Residual  = {}'.format( i, Res))
-       Norm      = assemble_norm_l2(V, fields=[u], value = [alpha])
-       norm      = Norm.toarray()[0]
+       # ... GL-FREE-ENERGY
+       Norm             = assemble_norm_l2(V, fields=[u], value = [alpha])
+       norm             = Norm.toarray()[0]
        return u, xu_n, Res, norm
 
 degree          = 2
@@ -134,7 +126,7 @@ levels          = list(linspace(-0.1,1.1,100))
 # ...
 nbpts           = 100    # for plot
 ii_max          = 10000  # for time iter
-Sol_CH_diff     = []
+stat_mement     = []
 GL_free_energy  = []
 n_iter          = []
 
@@ -161,7 +153,7 @@ if True :
    u_Pr = u_Pr.T
    #+++++++++++++++++++++++++++++
    du_ch     = (u_Pr0[:-degree,:-degree]-xu_ch[:-degree,:-degree]).reshape((VP1.nbasis-degree)*(VP2.nbasis-degree))
-   Sol_CH_diff.append((M_ms.dot(du_ch)).dot(du_ch) )
+   stat_mement.append((M_ms.dot(du_ch)).dot(du_ch) )
    GL_free_energy.append(norm)
    n_iter.append(t)   
    #+++-----------------------------------------------------------------------------------
@@ -169,7 +161,7 @@ if True :
    plt.figure() 
    plt.subplot(121)
    plt.title( '$\mathbf{||c-c_0||_{L^2}}$')
-   plt.plot(n_iter, Sol_CH_diff, 'o-b', linewidth = 2.)
+   plt.plot(n_iter, stat_mement, 'o-b', linewidth = 2.)
    plt.xscale('log')
    plt.xlabel('time',  fontweight ='bold')
    plt.grid(True)
@@ -222,7 +214,7 @@ for ii in range(0, ii_max):
    u_Pr = pyccel_sol_field_2d((nbpts,nbpts),  xu_ch, VPh.knots, VPh.degree)[0]
    # ...
    du_ch     = (u_Pr0[:-degree,:-degree]-xu_ch[:-degree,:-degree]).reshape((VP1.nbasis-degree)*(VP2.nbasis-degree))
-   Sol_CH_diff.append((M_ms.dot(du_ch)).dot(du_ch) )
+   stat_mement.append((M_ms.dot(du_ch)).dot(du_ch) )
    GL_free_energy.append(norm)
    n_iter.append(t)   
    #+++-----------------------------------------------------------------------------------
@@ -230,7 +222,7 @@ for ii in range(0, ii_max):
    plt.figure() 
    plt.subplot(121)
    plt.title( '$\mathbf{||c-c_0||_{L^2}}$')
-   plt.plot(n_iter, Sol_CH_diff, 'o-b', linewidth = 2.)
+   plt.plot(n_iter, stat_mement, 'o-b', linewidth = 2.)
    plt.xscale('log')
    plt.xlabel('time',  fontweight ='bold')
    plt.grid(True)
@@ -245,7 +237,7 @@ for ii in range(0, ii_max):
    plt.grid(True)
    #plt.legend()
    plt.subplots_adjust(wspace=0.3)
-   plt.savefig('figs/Pu.png')
+   plt.savefig('Pu.png')
    plt.show(block=False)
    plt.close()
    # ...
@@ -260,7 +252,7 @@ for ii in range(0, ii_max):
    
    fig.tight_layout()
    plt.subplots_adjust(wspace=0.3)
-   plt.savefig('figs/u_{}.png'.format(ii))
+   plt.savefig('u_{}.png'.format(ii))
    plt.show(block=False)
    plt.close()
 

@@ -120,7 +120,7 @@ def assemble_matrix_ex03(ne1, ne2, p1, p2,  spans_1, spans_2, basis_1, basis_2, 
     # ...
 
 #==============================================================================
-#---2 : In adapted mesh
+#---
 @types('int', 'int', 'int', 'int', 'int[:]', 'int[:]', 'double[:,:,:,:]', 'double[:,:,:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]', 'real', 'int', 'double[:,:]')
 def assemble_vector_ex03(ne1, ne2, p1, p2, spans_1, spans_2,  basis_1, basis_2,  weights_1, weights_2, points_1, points_2, vector_u, vector_w, dt, alpha, rhs):
 
@@ -264,8 +264,8 @@ def assemble_massmatrix1D(ne, degree, spans, basis, weights, points,  matrix):
                             matrix[degree+i1, degree+ i2-i1]  += v
 
 
-#==============================================================================Assemble rhs Poisson
-#---1 : In uniform mesh
+#=============================================================================
+#---
 @types('int', 'int', 'int', 'int', 'int[:]', 'int[:]', 'double[:,:,:,:]', 'double[:,:,:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]', 'double[:,:]')
 def assemble_vector_ex01(ne1, ne2, p1, p2, spans_1, spans_2,  basis_1, basis_2,  weights_1, weights_2, points_1, points_2, rhs):
 
