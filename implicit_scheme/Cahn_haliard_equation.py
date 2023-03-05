@@ -128,7 +128,7 @@ degree          = 2
 nelements       = 32
 # ...
 dt              = 1e-8
-alpha           = 3000
+alpha           = 6000
 t               = 0.
 levels          = list(linspace(-0.1,1.1,100))
 # ...
@@ -168,7 +168,7 @@ if True :
    # ... Statistical moment
    plt.figure() 
    plt.subplot(121)
-   plt.title( '$\mathbf{||c-c_0||_{L^1}}$')
+   plt.title( '$\mathbf{||c-c_0||_{L^2}}$')
    plt.plot(n_iter, Sol_CH_diff, 'o-b', linewidth = 2.)
    plt.xscale('log')
    plt.xlabel('time',  fontweight ='bold')
@@ -184,7 +184,7 @@ if True :
    plt.grid(True)
    #plt.legend()
    plt.subplots_adjust(wspace=0.3)
-   plt.savefig('figs/Pu.png')
+   #plt.savefig('figs/Pu.png')
    plt.show(block=True)
    #plt.pause(0.3)
    plt.close()
@@ -200,7 +200,7 @@ if True :
    
    fig.tight_layout()
    plt.subplots_adjust(wspace=0.3)
-   plt.savefig('figs/u_{}.png'.format(0))
+   #plt.savefig('figs/u_{}.png'.format(0))
    plt.show(block=True)
    #plt.pause(0.3)
    plt.close()
@@ -229,7 +229,7 @@ for ii in range(0, ii_max):
    # ... Statistical moment
    plt.figure() 
    plt.subplot(121)
-   plt.title( '$\mathbf{||c-c_0||_{L^1}}$')
+   plt.title( '$\mathbf{||c-c_0||_{L^2}}$')
    plt.plot(n_iter, Sol_CH_diff, 'o-b', linewidth = 2.)
    plt.xscale('log')
    plt.xlabel('time',  fontweight ='bold')
