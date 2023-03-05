@@ -290,9 +290,9 @@ for ii in range(0, ii_max):
 	   plt.close()
 	   i_save += 1
 
-if True :   
- import imageio 
- with imageio.get_writer('mygif.gif', mode='I') as writer: 
-     for filename in ['u_{}.png'.format(i) for i in range(1,ii_max)]: 
-         image = imageio.imread(filename) 
-         writer.append_data(image) 
+if True :    
+  import imageio  
+  with imageio.get_writer('cahn_haliard.gif', mode='I') as writer:  
+      for filename in ['figs/u_{}.png'.format(i) for i in range(1,i_save,35)]:  
+          image = imageio.imread(filename)  
+          writer.append_data(image) 
