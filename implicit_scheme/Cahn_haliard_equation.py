@@ -237,7 +237,7 @@ for ii in range(0, ii_max):
    plt.grid(True)
    #plt.legend()
    plt.subplots_adjust(wspace=0.3)
-   plt.savefig('Pu.png')
+   plt.savefig('figs/Pu.png')
    plt.show(block=False)
    plt.close()
    # ...
@@ -252,7 +252,7 @@ for ii in range(0, ii_max):
    
    fig.tight_layout()
    plt.subplots_adjust(wspace=0.3)
-   plt.savefig('u_{}.png'.format(ii))
+   plt.savefig('figs/u_{}.png'.format(ii))
    plt.show(block=False)
    plt.close()
 
